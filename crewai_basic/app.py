@@ -1,11 +1,14 @@
 import json
+import os
 import uuid
-from crewai_basic.crew_agent.job_screener_crew import JobScreenerCrew
+from crew_agent.job_screener_crew import JobScreenerCrew
 
 
 def read_file(filename):
-    with open(filename, 'r') as f:
+    with open(f'{os.getcwd()}/{filename}', 'r') as f:
+        print(f"Reading file: {filename}")
         return f.read()
+
 
 def write_json_file(data, filename):
     with open(filename, 'w') as f:
@@ -13,10 +16,10 @@ def write_json_file(data, filename):
 
 
 def run_crew():
-    job_title = "Software Engineer"
-    company_website = "https://www.example.com"
+    job_title = read_file('input/job_role.txt')
+    company_website = read_file('input/company.txt')
     job_description = read_file('input/job_description.txt')
-    resume = read_file('input/candidate_resume.txt')
+    resume = read_file('input/resume.txt')
 
     input_data = {
         "job_title": job_title,
@@ -24,17 +27,19 @@ def run_crew():
         "company_website": company_website,
         "candidate_resume": resume
     }
-    
 
     crew = JobScreenerCrew().crew()
     result = crew.kickoff(inputs=input_data)
-    result_dict = result.model_dump()
-    write_json_file(json.loads(result_dict.get('raw')), f'output_{str(uuid.uuid4())}.json')
+    pydantic_dict = result.pydantic.model_dump()
+    file_name = f'output_{str(uuid.uuid4())}.json'
+    write_json_file(pydantic_dict, file_name)
     print("\n" + "=" * 60)
-    print("🧠 Research Crew Result")
+    print(f"🧠 Research Crew Result: {file_name}")
     print("=" * 60)
-    print(result)
-    pass
+    print("Usage Statistics:")
+    print(result.token_usage)
+    print("=" * 60)
+
 
 if __name__ == "__main__":
     run_crew()

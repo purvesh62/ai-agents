@@ -8,88 +8,43 @@ job_profiler_task:
 
     Analyze the job description to extract key responsibilities, skills, qualifications,
     and any other relevant information that would help in understanding the role comprehensively.
-    
-    Note: Keep in mind the context size limitations when processing lengthy job descriptions or company information.
   expected_output: >
-    A structured job profile including:
-    - Job Title: [job title]
-    - Key Responsibilities: [bullet points]
-    - Required Skills and Qualifications: [bullet points]
-    - Preferred Experience: [bullet points]
-    - Company Overview: [brief summary]
-    - Ideal Candidate Profile: [detailed description]
-  agent: job_recruiter
+    A structured job profile with job title, key responsibilities, required skills,
+    preferred experience, company overview, and ideal candidate profile.
+  agent: job_analyst
 
 job_screening_task:
   description: >
     Screen the following candidate resume against the provided job profile:
 
-    Job Profile
     Candidate Resume: {candidate_resume}
 
     Evaluate the candidate's qualifications, experience, and skills in relation to the job requirements.
     Identify strengths, weaknesses, and overall fit for the role.
     If provided URLs of portfolios or LinkedIn profiles, incorporate insights from those as well.
-    
-    Note: Keep in mind the context size limitations when processing lengthy resumes or additional information.
+    Use ParallelSearchTool tool to gather additional context if necessary.
   expected_output: >
-    A comprehensive screening report including:
-    - name
-    - skills
-    - experience
-    - education
-    - certifications
-    - strengths
-    - weaknesses
-    - overall fit for the role
-    - recommendations for next steps
-  agent: job_recruiter
+    A comprehensive candidate profile with name, skills, experience years, education,
+    certifications, strengths, weaknesses, overall fit assessment, and suggested next steps.
+  agent: candidate_screener
 
 job_interview_prep_task:
   description: >
-    Prepare a list of tailored interview questions for the following job profile:
-
-    Job Profile
-    Candidate Resume: {candidate_resume}
+    Prepare tailored interview materials based on the candidate profile and job requirements.
 
     Develop questions that assess the candidate's skills, experience, and cultural fit for the role.
     Include behavioral, situational, and technical questions relevant to the job requirements.
-    
-    Note: Keep in mind the context size limitations when processing lengthy resumes or additional information.
   expected_output: >
-    A structured interview preparation guide including:
-    - Common Questions: [list of common interview questions tailored to the role]
-    - Best Practices: [list of interview best practices and tips]
-    - Resources: [list of recommended resources, links, or materials for further reference]
-  agent: job_recruiter
+    Interview preparation guide with common questions, best practices, and recommended resources.
+  agent: interview_coordinator
 
 final_summary_task:
   description: >
-    Create a comprehensive hiring package that consolidates all previous analyses into a cohesive summary.
-
-    This task should combine:
-    1. The complete job profile analysis (job title, responsibilities, skills, qualifications, company overview, ideal candidate)
-    2. The detailed candidate screening results (name, skills, experience, education, certifications, strengths, weaknesses, overall fit)
-    3. The interview preparation materials (common questions, best practices, resources)
+    Create a comprehensive hiring package that consolidates the candidate screening
+    and interview preparation into an executive summary.
 
     Provide an executive summary with key insights and actionable next steps for the hiring process.
-    
-    Note: Keep in mind the context size limitations when processing lengthy information from previous tasks.
   expected_output: >
-    A comprehensive hiring package including:
-    - Summary: [brief executive summary of the hiring recommendation]
-    - Key Points: [list of key insights from all analyses]
-    - Recommendations: [actionable next steps in the hiring process]
-    - Candidate Name: [full name]
-    - Skills: [consolidated list of candidate skills]
-    - Experience Years: [years of relevant experience]
-    - Education: [education background]
-    - Certifications: [list of certifications]
-    - Strengths: [list of candidate strengths]
-    - Weaknesses: [list of areas for development]
-    - Overall Fit: [fit assessment for the role]
-    - Suggested Next Steps: [recommended actions]
-    - Common Questions: [interview questions to ask]
-    - Best Practices: [interview tips and best practices]
-    - Resources: [helpful resources and materials]
-  agent: job_recruiter
+    A comprehensive hiring package with executive summary, key insights, candidate details,
+    screening results, interview materials, and actionable recommendations.
+  agent: hiring_manager

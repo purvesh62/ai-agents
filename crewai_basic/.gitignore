@@ -8,3 +8,18 @@ wheels/
 
 # Virtual environments
 .venv
+
+.gitignore
+.idea/
+.vscode/
+*.log
+.DS_Store
+.env
+.env.*
+*.sqlite3
+*.db
+*.bak
+*.swp
+*.tmp
+
+.claude/

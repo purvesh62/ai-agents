@@ -2,13 +2,6 @@ from pydantic import BaseModel, Field
 from typing import List
 
 
-class SampleAgentOutput(BaseModel):
-    """Sample output model for the agent"""
-    summary: str = Field(description="A brief summary of the main points")
-    key_points: List[str] = Field(description="List of key points discussed")
-    recommendations: List[str] = Field(description="Actionable recommendations based on the analysis")
-
-
 class JobProfiler(BaseModel):
     """Analysis of job screening results"""
     job_title: str = Field(description="Title of the job position")
