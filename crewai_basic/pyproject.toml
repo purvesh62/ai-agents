@@ -1,0 +1,15 @@
+[project]
+name = "crewai-agent1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "crewai[anthropic]>=1.6.0",
+    "crewai-tools>=1.6.0",
+    "litellm>=1.80.5",
+    "agentops>=0.4.21",
+    "composio-crewai>=0.9.3",
+    "composio>=0.9.3",
+    "composio-core>=0.7.21",
+]

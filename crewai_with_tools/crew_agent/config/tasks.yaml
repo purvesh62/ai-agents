@@ -1,0 +1,74 @@
+daily_calendar_tasks:
+  description: >
+    Find events and meetings from the user's calendar from the current day to next 3 days.
+    Given current date: {current_date}
+    
+    Extract details of all meetings scheduled for the day and keep the context small for fetching so only fetch
+    title, type, attendees and date of the events.
+    Extract if any birthdays or special events are occurring.
+    
+    Create a detailed summary including:
+    - Date and Time
+    - Participants
+    - Agenda or Purpose
+    - Location (if applicable)
+    If exists a todo list for the day, include that as well.
+  expected_output: >
+    A comprehensive list of upcoming meetings including:
+    - Title of the event
+    - Date and Time
+    - Participants
+    - Agenda or Purpose
+    - Location (if applicable)
+  agent: personal_assistant
+
+email_extraction_task:
+  description: >
+    Given current date: {current_date}
+    Analyze the user's inbox and extract key information from current day. 
+    Look for the unread emails as well as new newsletters or event invitations.
+    For each unread email, extract:
+    - Sender
+    - Subject
+    - Date received
+    - Brief content overview
+    
+    For each newsletter or promotional content email, extract:
+    - Sender
+    - Subject
+    - Date received
+    - Brief content overview
+    Be mindful of not exceeding context limits. Try to fetch only necessary information.
+    Analyze and summarize the content to highlight important information.
+  expected_output: >
+    A detailed extraction of emails including:
+    - List of unread emails or newsletters/promotional content emails with:
+        - Sender
+        - Subject
+        - Date received
+        - Brief content overview
+    - Summary
+  agent: personal_assistant
+
+summary_generator_task:
+  description: >
+    Based on the calendar and email extraction, generate a daily summary for the user.
+    The summary should include:
+    - Key meetings and tasks from the calendar
+    - Important emails and their summaries
+    - Any action items or follow-ups needed
+    - Any personal events like birthdays or special occasions
+    - Summarize the news letters and promotional content emails
+    
+    Based on the generated summary, store it in a format suitable for quick review in Google Docs app.
+    Use the MCP for storing the summary page in in the Google Docs. 
+    Make sure that everything is well formatted and easily readable.
+  expected_output: >
+    A comprehensive daily summary including:
+    - Key meetings and tasks
+    - Important emails and their summaries
+    - Action items or follow-ups needed
+    - Personal events like birthdays or special occasions
+    - Google Docs link 
+    - Summary of news letters and promotional content emails
+  agent: personal_assistant
