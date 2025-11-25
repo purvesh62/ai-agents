@@ -1,0 +1,64 @@
+company_research_task:
+  description: >
+    Research comprehensive information about the following company: {company_name}
+
+    Use SerperDevTool and ParallelSearchTool to gather the following information:
+
+    1. Company Overview: Official name, tagline/slogan, website URL
+    2. Basic Details: Industry, employee count, founded year, company type (Public/Private/Startup)
+    3. Financial Information: Revenue (if available), funding rounds, valuation, acquisitions
+    4. Products & Services: Main products/services offered, product summary
+    5. Technology Stack: Technologies and tools used by the company
+    6. Market Position: Main competitors in the industry
+    7. Recent News: Latest 3-5 news articles or company updates
+    8. Leadership: Key executives and leadership team members
+    9. Hiring in Canada: Check if company is hiring tech roles in Canada, list available positions
+    10. Web Properties: Related domains and websites
+
+    IMPORTANT: Be efficient with searches. Use targeted queries and avoid redundant searches.
+    Gather as much information as possible in each search. If information is not available,
+    explicitly mark it as "Not available" rather than making assumptions.
+  expected_output: >
+    A structured CompanyResearchData object containing all gathered information about the company.
+    All fields must be filled, using "Not available" for information that cannot be found.
+  agent: company_researcher
+
+report_generation_task:
+  description: >
+    Create a comprehensive markdown report from the research data gathered about {company_name}.
+
+    Structure the report with the following sections:
+
+    # {Company Name}
+    *Tagline*
+
+    ## Company Overview
+    - **Website:**
+    - **Industry:** 
+    - **Employees:** 
+    - **Founded:**
+    - **Type:** 
+    - **Revenue:** 
+
+    ## Latest News
+
+    ## Products & Services
+
+    ## Competitors
+
+    ## Technology Stack
+
+    ## Hiring in Canada
+
+    ## Financial Information
+
+    ## Leadership Team
+
+    ## Web Properties
+
+    Ensure the report is well-formatted, professional, and complete. If any information is
+    marked as "Not available", include that in the report to show thoroughness.
+  expected_output: >
+    A complete markdown formatted report as a CompanyResearchReport object containing all
+    company information in a professional, well-structured format.
+  agent: report_compiler
